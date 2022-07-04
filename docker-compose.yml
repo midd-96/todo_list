@@ -1,0 +1,17 @@
+version: '4.10.0'
+
+services:
+  database:
+    container_name: database
+    image: postgres:14.4
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=6125
+      - POSTGRES_DB=crud
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/posgresql/data
+volumes:
+  db:
