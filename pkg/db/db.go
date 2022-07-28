@@ -9,7 +9,7 @@ import (
 )
 
 func Init() *gorm.DB {
-	dbURL := "postgres://postgres:6125@localhost:5432/crud"
+	dbURL := "postgres://postgres:secret@localhost:5432/postgres"
 
 	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{})
 	if err != nil {
