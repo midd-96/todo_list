@@ -16,7 +16,7 @@ func (h handler) GetList(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
 
-	var list models.List
+	var list models.User
 
 	if result := h.DB.First(&list, id); result.Error != nil {
 		fmt.Println(result.Error)

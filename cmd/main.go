@@ -15,10 +15,13 @@ func main() {
 	h := handlers.New(DB)
 	router := mux.NewRouter()
 
-	router.HandleFunc("/lists", h.GetAllLists).Methods(http.MethodGet)
+	router.HandleFunc("/listAllUsers", h.ListAllUsers).Methods(http.MethodGet)
 	router.HandleFunc("/lists/{id}", h.GetList).Methods(http.MethodGet)
-	router.HandleFunc("/lists", h.AddList).Methods(http.MethodPost)
-	router.HandleFunc("/lists/{id}", h.UpdateList).Methods(http.MethodPut)
+	router.HandleFunc("/signupUser", h.SignupUser).Methods(http.MethodPost)
+	router.HandleFunc("/guestBooking", h.GuestBooking).Methods(http.MethodPost)
+	router.HandleFunc("/addDepartment", h.AddDept).Methods(http.MethodPost)
+	router.HandleFunc("/signupDoctor", h.SignupDoctor).Methods(http.MethodPost)
+	router.HandleFunc("/approveAndFee/{email}", h.AppoveAndFee).Methods(http.MethodPatch)
 	router.HandleFunc("/lists/{id}", h.DeleteList).Methods(http.MethodDelete)
 
 	log.Println("API is running")

@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	// "crypto/rand"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -10,7 +9,7 @@ import (
 	"todocrud/pkg/models"
 )
 
-func (h handler) AddList(w http.ResponseWriter, r *http.Request) {
+func (h handler) AddDept(w http.ResponseWriter, r *http.Request) {
 
 	defer r.Body.Close()
 	body, err := ioutil.ReadAll(r.Body)
@@ -19,17 +18,15 @@ func (h handler) AddList(w http.ResponseWriter, r *http.Request) {
 		log.Fatalln(err)
 	}
 
-	var list models.List
-	json.Unmarshal(body, &list)
+	var dept models.Departments
+	json.Unmarshal(body, &dept)
 
-	// list.Id = rand.Intn(100)
-	// mocks.Lists = append(mocks.Lists, list)
-
-	if result := h.DB.Create(&list); result.Error != nil {
+	if result := h.DB.Create(&dept); result.Error != nil {
 		fmt.Println(result.Error)
 	}
 
 	w.WriteHeader(http.StatusCreated)
 	w.Header().Add("Content-Type", "application/json")
-	json.NewEncoder(w).Encode("Created")
+	json.NewEncoder(w).Encode("DeptCreated")
+	json.NewEncoder(w).Encode(dept)
 }
